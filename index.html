@@ -3,62 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Centro de Estudos</title>
+  <title>Centro de Estudos - Vestibular</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <div class="app-container">
-    <header>
-      <h1>Centro de Estudos</h1>
-      <p>Organize seus materiais de estudo em um só lugar</p>
-    </header>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <i data-lucide="graduation-cap"></i>
+        <span>EstudaHub</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active"><i data-lucide="book-open"></i> Disciplinas</a>
+        <a href="#" class="nav-item"><i data-lucide="calendar"></i> Cronograma</a>
+        <a href="#" class="nav-item"><i data-lucide="check-square"></i> Exercícios</a>
+        <a href="#" class="nav-item"><i data-lucide="bookmark"></i> Salvos</a>
+      </nav>
+    </aside>
 
-    <main>
-      <section class="topic-header">
-        <h2>Tema: Aula de Genética</h2>
-        <span class="badge">4 Materiais</span>
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+      <header class="top-bar">
+        <div class="search-box">
+          <i data-lucide="search"></i>
+          <input type="text" id="searchInput" placeholder="Pesquisar material..." onkeyup="filterMaterials()">
+        </div>
+        <button class="btn-primary"><i data-lucide="plus"></i> Novo Material</button>
+      </header>
+
+      <section class="topic-banner">
+        <div class="topic-info">
+          <span class="category-tag">Biologia</span>
+          <h1>Aula de Genética</h1>
+          <p>Conceitos fundamentais, leis de Mendel e hereditariedade para o ENEM e vestibulares.</p>
+        </div>
+        <div class="topic-meta">
+          <span id="materialCount" class="counter">4 materiais</span>
+        </div>
       </section>
 
-      <!-- Filtros -->
+      <!-- Filtros por Categoria -->
       <nav class="filters">
-        <button class="filter-btn active" onclick="filterCategory('all')">Todos</button>
-        <button class="filter-btn" onclick="filterCategory('pdf')">PDFs</button>
-        <button class="filter-btn" onclick="filterCategory('video')">Vídeos</button>
-        <button class="filter-btn" onclick="filterCategory('photo')">Fotos</button>
-        <button class="filter-btn" onclick="filterCategory('note')">Anotações</button>
+        <button class="filter-btn active" onclick="filterCategory('all', this)">Todos</button>
+        <button class="filter-btn" onclick="filterCategory('pdf', this)"><i data-lucide="file-text"></i> PDFs</button>
+        <button class="filter-btn" onclick="filterCategory('video', this)"><i data-lucide="video"></i> Vídeos</button>
+        <button class="filter-btn" onclick="filterCategory('photo', this)"><i data-lucide="image"></i> Fotos</button>
+        <button class="filter-btn" onclick="filterCategory('note', this)"><i data-lucide="file-edit"></i> Anotações</button>
       </nav>
 
       <!-- Grid de Materiais -->
-      <div class="cards-grid">
-        <div class="card pdf">
-          <div class="card-icon">📄</div>
-          <div class="card-info">
-            <span class="tag">PDF</span>
+      <div class="cards-grid" id="cardsGrid">
+        <div class="card pdf" data-type="pdf">
+          <div class="card-type-icon pdf-icon"><i data-lucide="file-text"></i></div>
+          <div class="card-body">
+            <div class="card-header">
+              <span class="tag">PDF</span>
+              <span class="file-size">2.4 MB</span>
+            </div>
             <h3>Apostila de Genética Mendeliana</h3>
+            <p>Aprofundamento na 1ª e 2ª Lei de Mendel com exercícios resolvidos.</p>
+          </div>
+          <div class="card-actions">
+            <a href="#" class="btn-icon" title="Baixar"><i data-lucide="download"></i></a>
           </div>
         </div>
 
-        <div class="card video">
-          <div class="card-icon">▶️</div>
-          <div class="card-info">
-            <span class="tag">Vídeo YouTube</span>
+        <div class="card video" data-type="video">
+          <div class="card-type-icon video-icon"><i data-lucide="youtube"></i></div>
+          <div class="card-body">
+            <div class="card-header">
+              <span class="tag">Vídeo</span>
+              <span class="file-size">18 min</span>
+            </div>
             <h3>Resumo em Vídeo - 1ª Lei de Mendel</h3>
+            <p>Explicação prática sobre heredogramas e quadros de Punnett.</p>
+          </div>
+          <div class="card-actions">
+            <a href="#" class="btn-icon" title="Assistir"><i data-lucide="play"></i></a>
           </div>
         </div>
 
-        <div class="card photo">
-          <div class="card-icon">🖼️</div>
-          <div class="card-info">
-            <span class="tag">Foto da Lousa</span>
+        <div class="card photo" data-type="photo">
+          <div class="card-type-icon photo-icon"><i data-lucide="image"></i></div>
+          <div class="card-body">
+            <div class="card-header">
+              <span class="tag">Foto da Lousa</span>
+              <span class="file-size">HD</span>
+            </div>
             <h3>Diagrama de Cruzamentos (Quadro)</h3>
+            <p>Foto em alta resolução do quadro anotado pelo professor na última aula.</p>
+          </div>
+          <div class="card-actions">
+            <a href="#" class="btn-icon" title="Visualizar"><i data-lucide="eye"></i></a>
           </div>
         </div>
 
-        <div class="card note">
-          <div class="card-icon">📝</div>
-          <div class="card-info">
-            <span class="tag">Anotação</span>
+        <div class="card note" data-type="note">
+          <div class="card-type-icon note-icon"><i data-lucide="file-edit"></i></div>
+          <div class="card-body">
+            <div class="card-header">
+              <span class="tag">Anotação</span>
+              <span class="file-size">Texto</span>
+            </div>
             <h3>Resumo Pessoal: Codominância</h3>
+            <p>Diferenças fundamentais entre dominância incompleta e alelos múltiplos.</p>
+          </div>
+          <div class="card-actions">
+            <a href="#" class="btn-icon" title="Abrir"><i data-lucide="external-link"></i></a>
           </div>
         </div>
       </div>
