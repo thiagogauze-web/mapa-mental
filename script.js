@@ -1,23 +1,25 @@
-// Inicializa os ícones do Lucide
+// Inicializa os ícones da biblioteca Lucide
 lucide.createIcons();
 
 let activeCategory = 'all';
 
-// Filtra por Categoria
+// Filtra os cartões ao clicar nos botões de categoria
 function filterCategory(category, element) {
   activeCategory = category;
   
+  // Atualiza classe ativa dos botões
   document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
   element.classList.add('active');
 
   applyFilters();
 }
 
-// Filtra por Busca e Categoria
+// Filtra os cartões ao digitar na barra de pesquisa
 function filterMaterials() {
   applyFilters();
 }
 
+// Aplica a combinação de filtros (Categoria + Pesquisa por texto)
 function applyFilters() {
   const query = document.getElementById('searchInput').value.toLowerCase();
   const cards = document.querySelectorAll('.card');
@@ -39,6 +41,6 @@ function applyFilters() {
     }
   });
 
-  // Atualiza contador de itens visíveis
+  // Atualiza dinamicamente o contador de materiais
   document.getElementById('materialCount').textContent = `${visibleCount} material${visibleCount !== 1 ? 'is' : ''}`;
 }
