@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro de Estudos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>Centro de Estudos</h1>
+      <p>Organize seus materiais de estudo em um só lugar</p>
+    </header>
+
+    <main>
+      <section class="topic-header">
+        <h2>Tema: Aula de Genética</h2>
+        <span class="badge">4 Materiais</span>
+      </section>
+
+      <!-- Filtros -->
+      <nav class="filters">
+        <button class="filter-btn active" onclick="filterCategory('all')">Todos</button>
+        <button class="filter-btn" onclick="filterCategory('pdf')">PDFs</button>
+        <button class="filter-btn" onclick="filterCategory('video')">Vídeos</button>
+        <button class="filter-btn" onclick="filterCategory('photo')">Fotos</button>
+        <button class="filter-btn" onclick="filterCategory('note')">Anotações</button>
+      </nav>
+
+      <!-- Grid de Materiais -->
+      <div class="cards-grid">
+        <div class="card pdf">
+          <div class="card-icon">📄</div>
+          <div class="card-info">
+            <span class="tag">PDF</span>
+            <h3>Apostila de Genética Mendeliana</h3>
+          </div>
+        </div>
+
+        <div class="card video">
+          <div class="card-icon">▶️</div>
+          <div class="card-info">
+            <span class="tag">Vídeo YouTube</span>
+            <h3>Resumo em Vídeo - 1ª Lei de Mendel</h3>
+          </div>
+        </div>
+
+        <div class="card photo">
+          <div class="card-icon">🖼️</div>
+          <div class="card-info">
+            <span class="tag">Foto da Lousa</span>
+            <h3>Diagrama de Cruzamentos (Quadro)</h3>
+          </div>
+        </div>
+
+        <div class="card note">
+          <div class="card-icon">📝</div>
+          <div class="card-info">
+            <span class="tag">Anotação</span>
+            <h3>Resumo Pessoal: Codominância</h3>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
